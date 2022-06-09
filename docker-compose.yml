@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+
+  apache:
+    image: parentsite
+    build:
+      context: php_apache
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=a.domain.com
+    volumes:
+      # mount your web app root dirctory to /var/www/html in apache
+      # use current directory
+      - ./webroot/parentsite/:/var/www/html
+
+      # use absolute path D:\working\webapp
+      #- //d/working/webapp:/var/www/html
+    ports:
+      - "8080:80"
+
+  apache2:
+    image: site_a
+    build:
+      context: php_apache
+      dockerfile: Dockerfile
+    environment:
+      - VIRTUAL_HOST=a.domain.com
+    volumes:
+      # mount your web app root dirctory to /var/www/html in apache
+      # use current directory
+      - ./webroot/siteA/:/var/www/html
+
+      # use absolute path D:\working\webapp
+      #- //d/working/webapp:/var/www/html
+    ports:
+      - "8081:80"
+
+
+  
+  apache3:
+    image: site_b
+    build:
+      context: php_apache
+      dockerfile: Dockerfile
+    volumes:
+      # mount your web app root dirctory to /var/www/html in apache
+      # use current directory
+      - ./webroot/siteB/:/var/www/html
+
+      # use absolute path D:\working\webapp
+      #- //d/working/webapp:/var/www/html
+    ports:
+      - "8082:80"
+
+  
+volumes:
+  db-maria:
+

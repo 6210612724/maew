@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>jsonp</title>
+</head>
+<body>
+    <h1>JSONP test page</h1>
+
+    <h2 id="demo"></h2>
+
+    <script>
+        function process(input) {
+            window.demo.innerHTML = input;
+        }
+    </script>
+
+    <script src="http://localhost:8082/getdata.js"></script>
+	
+</body>
+</html>
